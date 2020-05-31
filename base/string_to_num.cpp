@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <cstdlib>
 using namespace std;
 
 
@@ -37,12 +38,24 @@ int strToNum(char *str)
 }
 
 
+void strToNumLib()
+{
+    int num_int;
+    double num_double;
+    char str_int[30] = "435";
+    char str_double[30] = "436.55";
+
+    num_int = atoi(str_int);
+    num_double = atof(str_double);
+
+    cout<<num_int<<"\t"<<num_double<<endl;
+}
 
 int main()
 {
 
     cout<<"test 45678:  "<<strToNum("45678")<<endl;
     cout<<"test -459802: "<<strToNum("-459802")<<endl;
-
+    strToNumLib();
     return 0;
 }
