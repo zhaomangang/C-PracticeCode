@@ -1,47 +1,44 @@
 #include <iostream>
+#include <cstdio>
 using namespace std;
 
 
 void RevStr(char *src)
 {
-    char *p = src;
-    int count = 0;
-    while(*p++ != '\0')
+    //先将字符串中每个单词的每个字母逆置 i ma nosam
+    //再将整个字符串逆置 mason am i
+    char *start = src;
+    char *end = src;
+    char *ptr = src;
+    while(*ptr++ != '\0')
     {
-        count++;
-    }
-    cout<<count<<endl;
-    p = src;
-    char *temp = new char[count + 1];
-    char *b_temp = temp;
-    char *flag = src;
-    while(*p++ != '\0')
-    {
-        if(*p == ' ')
+        if(*ptr == ' ' || *ptr == '\0')
         {
-            char *f = p;
-            p--;
-            while(*p != *flag)
+            end = ptr-1;
+            while(start < end)
             {
-                *temp = *p;
-                temp++;
-                p--;
+                char c = *start;
+                *start = *end;
+                *end = c;
+                start++;
+                end--;
             }
-            *temp = *p;
-            temp++;
-            flag = f;
-            p = f;
-            cout<<b_temp<<endl;
+            start = ptr+1;
         }
     }
-    *temp = '\0';
-    cout<<"btemp is "<<b_temp<<endl;
-    while(*b_temp != '\0')
+    cout<<src<<endl;
+    end = ptr-2; 
+    start = src;
+    while(start < end)
     {
-        *src++ = *b_temp++;
+        char c = *start;
+        *start = *end;
+        *end = c;
+        start++;
+        end--;
     }
+    cout<<src<<endl;
 }
-
 
 int main()
 {
