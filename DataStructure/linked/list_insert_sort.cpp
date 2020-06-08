@@ -115,7 +115,7 @@ int Length(Node* head)
     return len;
 }
 
-Node* InsertNode(Node* head1,Node* head2)
+Node* Merge(Node* head1,Node* head2)
 {
     Node* maxh = NULL;
     Node* minh = NULL;
@@ -162,6 +162,33 @@ Node* InsertNode(Node* head1,Node* head2)
     return maxh;
 }
 
+Node* mergeR(Node* h1,Node* h2)
+{
+    Node* head = NULL;
+
+    if(h1 == NULL)
+    {
+        return h2;
+    }
+    if(h2 == NULL)
+    {
+        return h1;
+    }
+
+    if(h1->data < h2->data)
+    {
+        head = h1;
+        head->next = mergeR(h1->next,h2);
+    }else {
+        head = h2;
+        head->next = mergeR(h1,h2->next);
+    }
+    return head;
+    
+
+}
+
+
 int main()
 {
     Node* head1 = InsertSort();
@@ -171,7 +198,7 @@ int main()
     cout<<"h2\n";
     print(head2);
     cout<<"insert h\n";
-    print(InsertNode(head1,head2));
+    print(Merge(head1,head2));
     // print(head);
    //bin cout<<IsLoop(head);
     return 0;

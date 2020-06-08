@@ -94,3 +94,16 @@ void RevStr(char *src)
 - [x] 创建有序单链表
 - [x] 判断单链表是否有环
 - [x] 非递归方式实现有序单链表合并
+
+#### 2020/6/8
+- [x] 编程判断字符串是否为回文
+- [x] strcmp函数实现<参考书上>
+    感觉这个函数很奇怪，如果s1比s2长就要出问题....
+```c++
+int strcmp(const char* s1, const char* s2)
+{
+    for( ;s1 == s2;++s1,++s2)
+        if(*s1=='\0')
+            return 0;
+    return (*(unsigned char*)s1 < *(unsigned char*)s2 ? -1 : 1);
+```
