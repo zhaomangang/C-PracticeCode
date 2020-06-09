@@ -110,6 +110,8 @@ int strcmp(const char* s1, const char* s2)
 
 #### 2020/6/9
 - [x] 约瑟夫环问题
+```c++
+/*
 问题描述：
         编号为1,2,...,N的N个人按顺时针方向围坐一圈，每个人持有一个密码(正整数),一开始任选一个正整数作为报数上限
     值M，从第一个人开始顺时针方向自1开始报数，报到M时停止报数。报M的人出列，将他的密码作为新的M值，从他在顺
@@ -120,7 +122,7 @@ int strcmp(const char* s1, const char* s2)
     3.当count == M 将当前结点的data域赋值给M并删除当前结点
     4.当pre == head时当前链表只剩下一个结点，删除该结点。跳出循环
     5.结点删除顺序即为出列顺序
-```c++
+*/
 void josephRing(Node* head,int m)
 {
     Node* bre_head = NULL;
