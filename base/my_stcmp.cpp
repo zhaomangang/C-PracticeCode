@@ -1,5 +1,6 @@
 #include <iostream>
-#include <cstring>
+//#include <cstring>
+#include <string.h>
 using namespace std;
 
 int MyStcmp(char* str1, char* str2)
