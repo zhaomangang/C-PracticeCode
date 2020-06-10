@@ -154,3 +154,96 @@ void josephRing(Node* head,int m)
 - [x] 双向链表建立
 - [x] 双向链表测长
 - [x] 双向链表打印
+
+#### 2020/6/10
+- [x] 入门shell(echo、变量定义、字符串、数组)
+- [x] 复习SQL语法(创建库、创建表、删除表、插入、修改、删除、简单查询数据)
+- [x] 冒泡排序
+```c++
+/*
+    它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。
+*/
+
+void BubbleSort(int* a,int n)
+{
+    //冒泡排序
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j = 0;j<n-1-i;j++)
+        {
+            if(a[j]>a[j+1])
+            {
+                int temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+            }
+        }
+    }
+
+}
+
+```
+- [x] 选择排序
+```c++
+/*
+首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。 
+*/
+
+void SelectSort(int* a,int n)
+{
+    int index = 0;
+    for(int i=0;i<n;i++)
+    {
+        index = i;
+        for(int j=i;j<n;j++)
+        {
+            if(a[j]<a[index])
+            {
+                index = j;
+            }
+        }
+        int temp = a[index];
+        a[index] = a[i];
+        a[i] = temp;
+    }
+}
+
+
+```
+- [x] 插入排序
+```c++
+/*
+它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。
+*/
+
+void InsertionSort(int* a,int n)
+{
+    void Print(int* a,int n);
+    for(int i=0;i<n;i++)
+    {
+        int temp = a[i];
+        int j=i;
+        for( ;j>0;j--)
+        {
+            if(temp<a[j-1])
+            {
+                a[j] = a[j-1];
+            }else{
+                break;
+            }
+        }
+        a[j]=temp;
+        Print(a,10);
+
+    }
+}
+
+```
+- [x] vim中从一个文件向另一个文件中复制内容
+```
+example:从demo.cpp复制23到47行粘贴至test.cpp46行
+1、打开demo.cpp
+2、复制(命令模式下)23,47 y <注意复制完需要w保存复制不行>
+3、打开test.cpp光标移动至46行
+4、NORMAL模式下直接按p
+```
