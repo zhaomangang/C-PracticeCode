@@ -247,3 +247,74 @@ example:从demo.cpp复制23到47行粘贴至test.cpp46行
 3、打开test.cpp光标移动至46行
 4、NORMAL模式下直接按p
 ```
+#### 2020/6/22
+为啥停了这么多天？我tm是sb。。。养了个猫就忘了学习今天还是做了招商银行的笔试才发现自己锤子都不会.....
+- [x] 查找两个字符串中的最大公共子串
+
+```c++
+/*
+    解题思路：
+    1、首先判断两个字符串是否有空串，如果有返回NULL
+    2、找出两个字符串中长字符串。此处使用strlen函数计算长度。strlen计算长度遇到'\0'结束。ex:strlen("mason") = 5
+    3、判断短串是否是长串的子串，如果是返回短串。使用strstr判断。example: strstr("mason","son") = "son"
+    4、将子串由长到短由前至尾截取看其是否在长串中
+*/
+
+//第四步实现
+for(int i = strlen(shortstr)-1 ; i > 0 ; i--)
+{
+    //从长到短
+    //exam："mason","maso","mas"...
+    for(int j = 0; j < strlen(shortstr)-i; j++)
+    {
+        //从前到后
+        //exam:"mas","aso","son"...
+        memcpy(substr,&shortstr[j],i);
+        substr[i] = '\0';
+        if(strstr(longstr,substr)!=NULL)
+            return substr;
+    }
+}
+
+//完整实现
+
+char *commonstring(char *str1,char *str2)
+{
+    char *shortstr = NULL;
+    char *longstr = NULL;
+    char *substr;
+
+    if(NULL == str1 || NULL == str2)
+    {
+        return NULL;
+    }
+
+    if(strlen(str1) <= strlen(str2))
+    {
+        shortstr = str1;
+        longstr = str2;
+    }else {
+        shortstr = str2;
+        longstr = str1;
+    }
+
+    if(strstr(longstr,shortstr) != NULL)
+    {
+        return shortstr;
+    }
+
+    substr = new char[sizeof(char)*strlen(shortstr)+1];
+
+    for(int i = strlen(shortstr)-1; i > 0; i--)
+    {
+        for(int j = 0; j<= strlen(shortstr)-i; j++)
+        {
+            memcpy(substr,&shortstr[j],i);
+            substr[i] = '\0';
+            if(strstr(longstr,substr)!=NULL)
+                return substr;
+        }
+    }
+    return NULL;
+}
+```
