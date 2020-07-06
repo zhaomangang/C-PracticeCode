@@ -318,3 +318,91 @@ char *commonstring(char *str1,char *str2)
     return NULL;
 }
 ```
+#### 2020/7/6
+- [x] 动态规划问题
+```
+题目描述
+一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
+输入:
+[
+    [0,0,0],
+    [0,1,0],
+    [0,0,0]
+]
+输出: 2
+解释:
+3x3 网格的正中间有一个障碍物。
+从左上角到右下角一共有 2 条不同的路径：
+1. 向右 -> 向右 -> 向下 -> 向下
+2. 向下 -> 向下 -> 向右 -> 向右
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/unique-paths-ii
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+```
+```c++
+/*
+解题思路
+动态规划问题在于用之前状态推导出当前状态
+原矩阵为a。现在定义一二维数组v。用来对应表达a每个位置可到达的路数。由于机器人只能
+向右或者向下走。因此如过a[i][j]!=1,v[i][j] = v[i-1][j]+v[i][j-1]
+v[i][j]的值即为右下角的路径条数
+例如：
+a矩阵如下
+0 0 0
+0 1 0
+0 0 0
+则对应的v为
+1 1 1
+1 0 1
+1 1 2
+*/
+
+class Solution {
+public:
+int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+	vector<vector<int >> num;
+	vector<int > temp;
+	int i, j;
+	int n = 0;
+	for (i = 0; i < obstacleGrid.size(); i++)
+	{
+		for (j = 0; j< obstacleGrid.at(i).size(); j++)
+		{
+			if (i == 0 && j == 0)
+			{
+				if (obstacleGrid.at(i).at(j) == 1)
+					return 0;
+				temp.push_back(1);
+				continue;
+			}
+
+			if (obstacleGrid.at(i).at(j) == 1)
+			{
+				n = 0;
+			}
+			else {
+				if (i - 1 >= 0)
+				{
+					n = n+num.at(i - 1).at(j);
+				}
+				if (j - 1 >= 0)
+				{
+					n = n+temp.at(j - 1);
+				}
+			}
+			//cout << n;
+			temp.push_back(n);
+			n = 0;
+		}
+		//cout << endl;
+		num.push_back(temp);
+		temp.clear();
+	}
+	return num.at(i - 1).at(j - 1);
+}
+};
+```
+- [x] 实现strrev 字符串反转
